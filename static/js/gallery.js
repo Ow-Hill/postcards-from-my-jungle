@@ -1,8 +1,7 @@
 document.querySelectorAll(".play-audio").forEach((button) => {
     button.addEventListener("click", () => {
         const galleryItem = button.closest(".gallery-item");
-        const textField = button.parentElement.querySelector("input");
-        const text = textField.value.trim();
+        const text = galleryItem.querySelector(".animal-text")?.textContent.trim();
         const audio = new Audio(galleryItem.dataset.audio);
 
         window.speechSynthesis?.cancel();
