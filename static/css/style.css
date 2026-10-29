@@ -1,0 +1,103 @@
+.home-page {
+    padding-top: 48px;
+    padding-bottom: 64px;
+}
+
+.home-header {
+    margin-bottom: 28px;
+}
+
+.home-title {
+    margin-bottom: 8px;
+    color: rgb(5, 5, 37);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.home-subtitle {
+    color: #676a64;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.gallery-item {
+    min-width: 0;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    background: #e3e4df;
+    object-fit: cover;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.audio-controls input {
+    min-width: 0;
+    flex: 1;
+    padding: 7px 8px;
+    border: 1px solid #c9cbc4;
+    border-radius: 5px;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    font-size: .8rem;
+}
+
+.audio-controls button {
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 5px;
+    background: rgb(13, 102, 104);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: .8rem;
+}
+
+.audio-controls button:hover { background: rgb(5, 75, 77); }
+.audio-controls button:focus-visible,
+.audio-controls input:focus-visible { outline: 2px solid #20221f; outline-offset: 2px; }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+@media (max-width: 760px) {
+    .container {
+        width: min(100% - 28px, 1200px);
+    }
+
+    .home-page {
+        padding-top: 32px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
