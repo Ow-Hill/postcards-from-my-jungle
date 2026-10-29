@@ -5,75 +5,229 @@
 
 .home-header {
     margin-bottom: 28px;
+    padding: 20px 24px;
+    border: 1px solid rgb(192 211 114 / 35%);
+    border-left: 5px solid #b9c94a;
+    border-radius: 18px;
+    background: linear-gradient(110deg, rgb(16 55 35 / 95%), rgb(21 69 43 / 83%));
+    box-shadow: 0 14px 40px rgb(0 0 0 / 24%);
+}
+
+body.non-normal-display .home-header {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: min(460px, calc(100vw - 32px));
+    margin: 0;
+    will-change: left, top;
+    pointer-events: none;
 }
 
 .home-title {
     margin-bottom: 8px;
-    color: rgb(5, 5, 37);
+    color: #f2e7a7;
     font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 500;
-    letter-spacing: -0.04em;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    letter-spacing: .035em;
+    line-height: 1.08;
+    text-shadow: 0 2px 0 #705027, 0 7px 18px rgb(0 0 0 / 48%);
+    text-transform: uppercase;
 }
 
 .home-subtitle {
-    color: #676a64;
+    color: #c7dcae;
+    font-size: .85rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
 
 .gallery {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+body.non-normal-display { overflow: hidden; }
+
+body.non-normal-display .gallery {
+    position: fixed;
+    z-index: 1;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+body:not(.non-normal-display) .home-header {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+}
+
+body:not(.non-normal-display) .gallery {
     display: grid;
+    height: auto !important;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
+    overflow: visible;
 }
 
 .gallery-item {
+    position: absolute;
+    top: 0;
+    left: 0;
     min-width: 0;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid #d9dcd4;
+    border-radius: 12px;
+    background: #e9ede6;
+    box-shadow: 0 5px 18px rgb(35 48 35 / 7%);
+    will-change: transform;
+    cursor: pointer;
 }
 
-.gallery-item img {
+.gallery-item.is-bumping { animation: jungle-burst 360ms ease-out; }
+
+@keyframes jungle-burst {
+    0%, 100% { border-color: #648d43; box-shadow: 0 10px 24px rgb(0 0 0 / 34%), inset 0 1px rgb(235 246 180 / 14%); }
+    35% { border-color: var(--impact-glow); box-shadow: 0 0 40px var(--impact-glow), inset 0 0 30px var(--impact-fill); }
+}
+
+body:not(.non-normal-display) .gallery-item {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.dvd-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 58%;
+    aspect-ratio: 1;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    will-change: left, top;
+}
+
+.dvd-logo img {
     display: block;
     width: 100%;
-    aspect-ratio: 1;
-    border-radius: 10px;
+    height: 100%;
+    border: 4px solid #d4e883;
+    border-radius: 50%;
     background: #e3e4df;
     object-fit: cover;
+    box-shadow: 0 5px 18px rgb(0 0 0 / 48%), 0 0 0 4px rgb(230 223 156 / 38%);
 }
 
-.animal-text {
-    margin-top: 10px;
-    color: #343831;
-    font-size: .95rem;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-}
-
-.audio-controls {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-}
-
-.audio-controls button {
-    padding: 7px 10px;
-    border: 0;
-    border-radius: 5px;
-    background: rgb(13, 102, 104);
-    color: #fff;
-    cursor: pointer;
+.display-mode-toggle {
+    position: fixed;
+    z-index: 5;
+    top: 16px;
+    right: 18px;
+    padding: 10px 14px;
+    border: 1px solid #d6df93;
+    border-radius: 999px;
+    background: linear-gradient(#edf0bd, #c9d879);
+    color: #163c28;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 38%);
+    font-weight: 700;
     font: inherit;
-    font-size: .8rem;
+    cursor: pointer;
 }
 
-.audio-controls button:hover { background: rgb(5, 75, 77); }
-.audio-controls button:focus-visible { outline: 2px solid #20221f; outline-offset: 2px; }
+.display-mode-toggle:focus-visible { outline: 3px solid #0d6668; outline-offset: 2px; }
 
-.visually-hidden {
+.hockey-pusher {
+    position: fixed;
+    z-index: 4;
+    top: 20px;
+    left: 20px;
+    display: grid;
+    width: 66px;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 5px solid #f1df70;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 28%, #ff9771, #d34d35 62%, #7d271f);
+    box-shadow: 0 5px 16px rgb(0 0 0 / 45%), inset 0 2px 5px rgb(255 255 255 / 42%);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.hockey-pusher::before,
+.hockey-pusher::after {
     position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    clip-path: inset(50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f6e98c;
+    content: "";
+}
+
+.hockey-pusher::before { transform: translate(-12px, -9px); }
+.hockey-pusher::after { transform: translate(12px, 9px); }
+.hockey-pusher span { width: 17px; aspect-ratio: 1; border: 2px solid #ffe9bd; border-radius: 50%; }
+.hockey-pusher:active, .hockey-pusher.is-dragging { cursor: grabbing; box-shadow: 0 0 24px rgb(255 151 113 / 75%); }
+.hockey-pusher:focus-visible { outline: 3px solid #f1df70; outline-offset: 4px; }
+body.is-paused .hockey-pusher { cursor: not-allowed; filter: grayscale(.65); }
+
+.dvd-logo:focus-visible { outline: 3px solid #0d6668; outline-offset: 3px; }
+.gallery-item.is-open .dvd-logo { filter: drop-shadow(0 0 9px #0d6668); }
+
+.animal-display {
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 20px;
+    border: 1px solid #d9dcd4;
+    border-radius: 16px;
+    background: #f8f9f5;
+    color: #20221f;
+    box-shadow: 0 24px 80px rgb(0 0 0 / 30%);
+}
+
+.animal-display::backdrop { background: rgb(3 17 11 / 82%); }
+
+.display-close {
+    display: block;
+    margin-left: auto;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: #e7eae2;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.display-image {
+    display: block;
+    width: 100%;
+    max-height: 55vh;
+    margin-top: 12px;
+    border-radius: 10px;
+    background: #e3e4df;
+    object-fit: contain;
+}
+
+.display-audio { display: block; width: 100%; margin-top: 12px; }
+.display-text { margin-top: 14px; font-size: 1.05rem; line-height: 1.5; }
+.animal-display:focus { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-item, .dvd-logo { will-change: auto; }
 }
 
 @media (max-width: 760px) {
@@ -85,14 +239,10 @@
         padding-top: 32px;
     }
 
-    .gallery {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-    }
+    body:not(.non-normal-display) .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 480px) {
-    .gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    body:not(.non-normal-display) .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .display-mode-toggle { top: 10px; right: 10px; padding: 8px 10px; }
 }
